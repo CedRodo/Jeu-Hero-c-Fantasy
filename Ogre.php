@@ -12,9 +12,14 @@ class Ogre extends Personnages implements Monstres {
     }
 
     public function attaque(Heros $hero) {
-        $atk = ($this->getAtt()-(($this->getAtt()/100)*$hero->defense()));
-        $hero->setHp(($hero->getHp() - $atk));
-        echo "L'attaque de ".$this->getType()." : ".$atk;
+        $atk = round(($this->getAtt()-(($this->getAtt()/100)*$hero->defense())));
+        if ($atk > $hero->getHp()) {
+            $hero->setHp(0);
+        } else {
+        $hero->setHp(($hero->getHp() - $atk)); }
+        echo "Attaque réussie de ".$this->getType();
+        echo "<br/><br/>";
+        echo "Dégats portés : ".$atk;
         echo "<br/><br/>";
         echo "La vie de ".$hero->getNom()." : ".$hero->getHp();
     }

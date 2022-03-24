@@ -17,9 +17,14 @@ class Chevalier extends Personnages implements Heros {
     }
 
     public function attaque(Monstres $monstre) {
-        $atk = ($this->getAtt()-(($this->getAtt()/100)*$monstre->defense()));
-        $monstre->setHp(($monstre->getHp() - $atk));
-        echo "L'attaque de ".$this->getNom()." : ".$atk;
+        $atk = round(($this->getAtt()-(($this->getAtt()/100)*$monstre->defense())));
+        if ($atk > $monstre->getHp()) {
+            $monstre->setHp(0);
+        } else {
+        $monstre->setHp(($monstre->getHp() - $atk)); }
+        echo "Attaque réussie de ".$this->getNom();
+        echo "<br/><br/>";
+        echo "Dégats portés : ".$atk;
         echo "<br/><br/>";
         echo "La vie de ".$monstre->getType()." : ".$monstre->getHp();
     }

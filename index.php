@@ -82,32 +82,30 @@ switch ($m) {
         break;
 }
  ?>
-<h2 style="text-align: center;"><?= $hero->getClasse(); ?> vs <?= $monstre->getType(); ?></h2>
+<h2 style="text-align: center;"><span style="text-transform: uppercase;"><?= $hero->getClasse(); ?></span> vs <span style="text-transform: uppercase;"><?= $monstre->getType(); ?></span></h2>
 <br><br><br>
 <?php $tour = 1;
 while (($monstre->getHp() > 0) && ($hero->getHp() > 0)) { ?>
 <h3 style="text-decoration: underline;">Tour n° <?= $tour; ?></h3>
-<br><br>
+<br>
 <?php if ($hero->getHp() > 0) { ?>
-<h4>Attaque de <?= $hero->getNom(); ?></h3>
+<h4><span style="text-transform: uppercase;"><?= $hero->getNom(); ?></span> <span style="font-style: italic; font-weight: normal;text-transform: lowercase;">(<?= $hero->getClasse(); ?>)</span></h3>
 <?php $hero->attaque($monstre); } ?>
 <?php if ($monstre->getHp() > 0) { ?>
 <br><br>
-<h4>Attaque de <?= $monstre->getType(); ?></h3>
+<h4 style="text-transform: uppercase;"><?= $monstre->getType(); ?></h3>
 <?php $monstre->attaque($hero); ?>
 <br><br>
 <h4>Statut de <?= $hero->getNom(); ?></h3>
-<?= $hero->getClasse(); ?>
-<br>
 <?php $hero->statut(); } ?>
 <br><br>
 <?php $tour++; } ?>
 <br><br>
 <?php
 if ($monstre->getHp() <= 0) { ?>
-<h4 style="color: blue;"><?= $hero->getClasse(); ?> a vaincu <?= $monstre->getType(); ?> !</h4>
+<h4 style="color: blue;"><?= $hero->getNom(); ?> a vaincu <?= $monstre->getType(); ?> !</h4>
 <?php } else { ?>
-<h4 style="color: red;"><?= $monstre->getType(); ?> a défait <?= $hero->getClasse(); ?>...</h4>
+<h4 style="color: red;"><?= $monstre->getType(); ?> a défait <?= $hero->getNom(); ?>...</h4>
 <?php } ?>
 </body>
 </html>
