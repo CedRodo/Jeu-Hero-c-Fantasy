@@ -1,5 +1,6 @@
 <?php
 
 interface Monstres {
-    public function getType();
+    function getType();
+    function attaque(Heros $hero);
 }

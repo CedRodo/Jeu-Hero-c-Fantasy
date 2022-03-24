@@ -1,25 +1,11 @@
 <?php
 
 abstract class Personnages {
-    private ?string $type;
-    private int $hp;
-    private int $xp;
+    private int $hp = 100;
     private int $att;
     private int $def;
-    private int $mag;
     private int $vit;
     private int $lvl = 1;
-
-    public function __construct(?string $nom = null, ?string $classe = null, int $hp = null, int $xp = null, int $attaque = null, int $defense = null, int $magie = null, int $vitesse = null) {
-        $this->SetNom($nom);
-        $this->SetClasse($classe);
-        $this->SetHp($hp);
-        $this->SetXp($xp);
-        $this->SetAtt($attaque);
-        $this->SetDef($defense);
-        $this->SetMag($magie);
-        $this->SetVit($vitesse);
-    }
 
     public function description() {
         echo "<p style='white-space:pre'><strong>Nom du personnage</strong> : ".$this->getNom()."
@@ -35,9 +21,9 @@ abstract class Personnages {
         echo "<p><span style='color: green;'>HP</span> : ".$this->getHp()." | <span style='color: gray;'>XP</span> : ".$this->getXp()." | <span style='color: blue;'>ATT</span> : ".$this->getAtt()." | <span style='color: red;'>DEF</span> : ".$this->getDef()." | <span style='color: fuchsia;'>MAG</span> : ".$this->getMag()." | <span style='color: darkorange ;'>VIT</span> : ".$this->getVit()."</p>";
     }
 
-
     public function defense() {
-
+        $block = rand(($this->getDef() - 10), ($this->getDef() + 5));
+        return $block;
     }
 
     public function magie() {

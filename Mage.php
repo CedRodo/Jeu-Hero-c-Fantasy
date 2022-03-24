@@ -2,18 +2,18 @@
 
 class Mage extends Personnages implements Heros {
     private ?string $classe;
-    private int $xp;
+    private int $xp = 0;
     private int $mag;
 
-    public function __construct(?string $nom = null, ?string $classe = "mage", int $hp = 100, int $xp = 0, int $attaque = 5, int $defense = 5, int $magie = 80, int $vitesse = 10) {
+    public function __construct(?string $nom = null) {
         $this->setNom($nom);
-        $this->setClasse($classe);
-        $this->setHp($hp);
-        $this->setXp($xp);
-        $this->setAtt($attaque);
-        $this->setDef($defense);
-        $this->setMag($magie);
-        $this->setVit($vitesse);
+        $this->setClasse("mage");
+        $this->setHp(100);
+        $this->setXp(0);
+        $this->setAtt(5);
+        $this->setDef(5);
+        $this->setMag(80);
+        $this->setVit(10);
     }
 
     public function attaque(Monstres $monstre) {

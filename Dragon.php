@@ -3,14 +3,14 @@
 class Dragon extends Personnages implements Monstres {
     private ?string $type;
 
-    public function __construct(?string $type = "dragon", int $hp = 100, int $xp = 0, int $attaque = 40, int $defense = 30, int $vitesse = 30) {
-        $this->setType($type);
-        $this->setHp($hp);
-        $this->setAtt($attaque);
-        $this->setDef($defense);
-        $this->setVit($vitesse);
+    public function __construct() {
+        $this->setType("dragon");
+        $this->setHp(100);
+        $this->setAtt(40);
+        $this->setDef(30);
+        $this->setVit(30);
     }
-
+    
     public function attaque(Heros $hero) {
         $atk = round(($this->getAtt()-(($this->getAtt()/100)*$hero->defense())));
         if ($atk > $hero->getHp()) {
@@ -22,11 +22,6 @@ class Dragon extends Personnages implements Monstres {
         echo "Dégats portés : ".$atk;
         echo "<br/><br/>";
         echo "La vie de ".$hero->getNom()." : ".$hero->getHp();
-    }
-
-    public function defense() {
-        $block = rand(($this->getDef() - 10), ($this->getDef() + 5));
-        return $block;
     }
 
     /**

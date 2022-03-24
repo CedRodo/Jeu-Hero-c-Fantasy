@@ -1,19 +1,19 @@
 <?php
 
 class Chevalier extends Personnages implements Heros {
-    public ?string $classe;
-    public int $xp;
-    public int $mag;
+    private ?string $classe;
+    private int $xp;
+    private int $mag;
 
-    public function __construct(?string $nom = null, ?string $classe = "chevalier", int $hp = 100, int $xp = 0, int $attaque = 40, int $defense = 40, int $magie = 5, int $vitesse = 15) {
+    public function __construct(?string $nom = null) {
         $this->setNom($nom);
-        $this->setClasse($classe);
-        $this->setHp($hp);
-        $this->setXp($xp);
-        $this->setAtt($attaque);
-        $this->setDef($defense);
-        $this->setMag($magie);
-        $this->setVit($vitesse);
+        $this->setClasse("chevalier");
+        $this->setHp(100);
+        $this->setXp(0);
+        $this->setAtt(40);
+        $this->setDef(40);
+        $this->setMag(5);
+        $this->setVit(15);
     }
 
     public function attaque(Monstres $monstre) {
@@ -27,11 +27,6 @@ class Chevalier extends Personnages implements Heros {
         echo "Dégats portés : ".$atk;
         echo "<br/><br/>";
         echo "La vie de ".$monstre->getType()." : ".$monstre->getHp();
-    }
-
-    public function defense() {
-        $block = rand(($this->getDef() - 10), ($this->getDef() + 5));
-        return $block;
     }
 
     /**

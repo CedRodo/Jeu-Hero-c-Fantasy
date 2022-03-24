@@ -3,12 +3,12 @@
 class Ogre extends Personnages implements Monstres {
     private ?string $type;
 
-    public function __construct(?string $type = "ogre", int $hp = 100, int $xp = 0, int $attaque = 50, int $defense = 40, int $vitesse = 10) {
-        $this->setType($type);
-        $this->setHp($hp);
-        $this->setAtt($attaque);
-        $this->setDef($defense);
-        $this->setVit($vitesse);
+    public function __construct() {
+        $this->setType("ogre");
+        $this->setHp(100);
+        $this->setAtt(50);
+        $this->setDef(40);
+        $this->setVit(10);
     }
 
     public function attaque(Heros $hero) {
@@ -22,11 +22,6 @@ class Ogre extends Personnages implements Monstres {
         echo "Dégats portés : ".$atk;
         echo "<br/><br/>";
         echo "La vie de ".$hero->getNom()." : ".$hero->getHp();
-    }
-
-    public function defense() {
-        $block = rand(($this->getDef() - 10), ($this->getDef() + 5));
-        return $block;
     }
 
     /**

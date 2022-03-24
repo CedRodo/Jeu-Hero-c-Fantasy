@@ -1,8 +1,9 @@
 <?php
 
 interface Heros {
-    public function getClasse();
-    public function getXp();
-    public function getMag();
+    function getClasse();
+    function getXp();
+    function getMag();
+    function attaque(Monstres $monstre);
 
 }

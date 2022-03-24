@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <title>Jeu de rôle</title>
 </head>
 <body>
@@ -61,24 +61,30 @@ $m = rand(1, 3);
 switch ($h) {
     case 1:
         $hero = $chevalier;
+        $hero_photo = 'assets/img/FFT_Agrias_CG_Render.png';
         break;
     case 2:
         $hero = $archer;
+        $hero_photo = 'assets/img/ArcherMale.png';
         break;
     case 3:
         $hero = $mage;
+        $hero_photo = 'assets/img/FFTBlackMageMale.png';
         break;
 }
 
 switch ($m) {
     case 1:
         $monstre = $ogre;
+        $hero_photo = 'assets/img/FFT_Cyclops.jpg';
         break;
     case 2:
         $monstre = $goblin;
+        $hero_photo = 'assets/img/Goblin.png';
         break;
     case 3:
         $monstre = $dragon;
+        $hero_photo = 'assets/img/FFT-Wyrm-artwork.png';
         break;
 }
  ?>

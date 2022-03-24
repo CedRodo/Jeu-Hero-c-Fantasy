@@ -3,12 +3,12 @@
 class Goblin extends Personnages implements Monstres {
     private ?string $type;
 
-    public function __construct(?string $type = "goblin", int $hp = 100, int $xp = 0, int $attaque = 25, int $defense = 25, int $vitesse = 50) {
-        $this->setType($type);
-        $this->setHp($hp);
-        $this->setAtt($attaque);
-        $this->setDef($defense);
-        $this->setVit($vitesse);
+    public function __construct() {
+        $this->setType("goblin");
+        $this->setHp(100);
+        $this->setAtt(25);
+        $this->setDef(25);
+        $this->setVit(50);
     }
 
     public function attaque(Heros $hero) {
@@ -22,11 +22,6 @@ class Goblin extends Personnages implements Monstres {
         echo "Dégats portés : ".$atk;
         echo "<br/><br/>";
         echo "La vie de ".$hero->getNom()." : ".$hero->getHp();
-    }
-
-    public function defense() {
-        $block = rand(($this->getDef() - 10), ($this->getDef() + 5));
-        return $block;
     }
 
     /**
