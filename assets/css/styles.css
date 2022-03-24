@@ -1,19 +1,21 @@
 #description {
     text-align: center;
+    margin-bottom: 200px;
 }
 
 h1 {
     width: fit-content;
     padding: 10px 20px;
     margin-top: 80px;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     border: 3px solid;
-    background-color: rgba(235, 190, 130, 0.705);
+    background: linear-gradient(0.25turn,rgb(248, 164, 55),rgb(236, 233, 230));
+    /* background-color: rgba(235, 190, 130, 0.705); */
     border-style: double groove;
-    color: rgb(61, 53, 53);
+    color: rgba(61, 53, 53, 0.89);
 }
 
 #description h2 {
@@ -35,3 +37,27 @@ h1 {
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+.duel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 100px;
+}
+
+.duel img {
+    display: block;
+    height: 500px;
+}
+
+input[value] {
+    text-align: center;
+    background-color: bisque;
+}
+/* .duel-hero {
+    display: left;
+}
+
+.duel-monstre {
+    text-align: right;
+} */
