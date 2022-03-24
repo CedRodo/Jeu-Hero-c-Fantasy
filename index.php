@@ -34,7 +34,7 @@ if (isset($_POST['mage'])) {
 ?>
 <br><br>
 <section id="description">
-    <form id="myForm" method="POST" action="">
+    <form id="myFunction" onClick= { myFunction } method="POST" action="">
 <div class="description_heros">
 <article>
 <h2>Chevalier</h2>
@@ -71,7 +71,7 @@ $mage->description(); ?>
 </article>
 </div>
 <br/><br/>
-<input style="font-size: 18px; background-color: navy; color: white;" type="submit" value="Continuer">
+<input style="font-size: 18px; background-color: navy; color: white; display: none;" type="submit">
 <form>
 </section>
 <h1>Jeu</h1>
@@ -236,5 +236,10 @@ if ($monstre->getHp() <= 0) { ?>
 <?php } else { ?>
 <h3 style="text-align: center; margin-bottom: 50px; font-size: 25px; color: red;"><?= $monstre->getType(); ?> a défait <?= $hero->getNom(); ?>...</h4>
 <?php } ?>
+<script>
+    function myFunction() { 
+          document.getElementById("myFunction").submit(); 
+        }
+</script>
 </body>
 </html>
