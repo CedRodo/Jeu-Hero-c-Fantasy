@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+    <script src="./assets/js/functions.js"></script>
     <title>Jeu de rôle</title>
 </head>
 <body>
-<h1>Présentation des personnages</h1>
+<main>
+<h1>Classes</h1>
 <?php require "Personnages.php";
 require "Heros.php";
 require "Monstres.php"; 
@@ -34,9 +36,9 @@ if (isset($_POST['mage'])) {
 ?>
 <br><br>
 <section id="description">
-    <form id="myFunction" onClick= { myFunction } method="POST" action="">
+    <form id="myFunction" method="POST" action="">
 <div class="description_heros">
-<article>
+<article id="knight">
 <h2>Chevalier</h2>
 <img height=400px src="assets/img/Knight13.png" alt="chevalier">
 <?php require "Chevalier.php";
@@ -45,9 +47,10 @@ echo "<br/>";
 $chevalier->description(); ?>
 <input type="text" name="chevalier" id="chevalier" value="<?= $chevalier_nom ?>">
 <br/><br/><hr>
-<?php echo "<p class='statut'>".$chevalier->statut()."</p>"; ?>
+<p class="statut"><?= $chevalier->statut(); ?></p>
+<button type="button" id="ch_knight" class="choix">Choisir</button>
 </article>
-<article>
+<article id="archer">
 <h2>Archer</h2>
 <img height=400px src="assets/img/Archer-2.png" alt="archer">
 <?php require "Archer.php";
@@ -56,9 +59,10 @@ echo "<br/>";
 $archer->description(); ?>
 <input type="text" placeholder="archer" name="archer" id="archer" value="<?= $archer_nom ?>">
 <br/><br/><hr>
-<?php echo "<p class='statut'>".$archer->statut()."</p>"; ?>
+<p class="statut"><?= $archer->statut(); ?></p>
+<button type="button" id="ch_archer" class="choix">Choisir</button>
 </article>
-<article>
+<article id="mage">
 <h2>Mage</h2>
 <img height=400px src="assets/img/Mage2-2.png" alt="mage">
 <?php require "Mage.php";
@@ -67,7 +71,8 @@ echo "<br/>";
 $mage->description(); ?>
 <input type="text" placeholder="mage" name="mage" id="mage" value="<?= $mage_nom ?>">
 <br/><br/><hr>
-<?php echo "<p class='statut'>".$mage->statut()."</p>"; ?>
+<p class="statut"><?= $mage->statut(); ?></p>
+<button type="button" id="ch_mage" class="choix">Choisir</button>
 </article>
 </div>
 <br/><br/>
@@ -194,7 +199,7 @@ switch ($m) {
 
     case 1:
         $monstre = $ogre;
-        $monstre_photo = 'assets/img/Ogre.jpg';
+        $monstre_photo = 'assets/img/Ogre.png';
         break;
     case 2:
         $monstre = $goblin;
@@ -206,40 +211,158 @@ switch ($m) {
         break;
 }
  ?>
-<h2 style="text-align: center;"><span style="text-transform: uppercase;"><?= $hero->getClasse(); ?></span> vs <span style="text-transform: uppercase;"><?= $monstre->getType(); ?></span></h2>
-<br><br><br>
+<br>
 <div class="duel">
-    <img class="duel-hero" src="<?= $hero_photo ?>" alt="hero">
-    <img class="duel-monstre" src="<?= $monstre_photo ?>" alt="monstre">
+    <div class="duel-hero-container">
+        <h2><?= $hero->getClasse(); ?></h2>
+        <br><br>
+        <img class="duel-hero" src="<?= $hero_photo ?>" alt="hero">
+        <div class="duel-hero-prog">
+            <div>
+                <label class="barre_hp" for="barre_hp">HP</label> <progress id="barre_hp" max="100" value="100"></progress>
+            </div>
+            <div>
+                <label class="barre_mp" for="barre_mp">MP</label> <progress id="barre_mp" max="100" value="100"></progress>
+            </div>
+        </div>
+        <div class="duel-hero-buttons">
+            <button type="button" class="attaque" onclick="attaque();">ATT</button><button type="button" class="magie" onclick="alert('Magie !');return false;">MAG</button><button type="button" class="sante" onclick="this.textContent='HP UP !';return false;">REG</button>
+        </div>
+    </div>
+    <div class="duel-monstre-container">
+        <h2><?= $monstre->getType(); ?></h2>
+        <br><br>
+        <img class="duel-monstre" src="<?= $monstre_photo ?>" alt="monstre">
+        <div class="duel-monstre-prog">
+            <div>
+                <label class="barre_hp" for="barre_hp">HP</label> <progress id="hp_monstre" max="100" value="100"></progress>
+            </div>
+        </div>
+    </div>
 </div>
 <br><br><br>
-<?php $tour = 1;
-while (($monstre->getHp() > 0) && ($hero->getHp() > 0)) { ?>
-<h3 style="border: 2px solid black; border-style: dotted; width: fit-content; padding: 5px;">Tour n° <?= $tour; ?></h3>
-<br>
-<?php if ($hero->getHp() > 0) { ?>
-<h4><span style="text-transform: uppercase;"><?= $hero->getNom(); ?></span> <span style="font-style: italic; font-weight: normal;text-transform: lowercase;">(<?= $hero->getClasse(); ?>)</span></h3>
-<?php $hero->attaque($monstre); } ?>
-<?php if ($monstre->getHp() > 0) { ?>
-<br><br>
-<h4 style="text-transform: uppercase;"><?= $monstre->getType(); ?></h3>
-<?php $monstre->attaque($hero); ?>
-<br><br>
-<h4>Statut de <?= $hero->getNom(); ?></h3>
-<?php $hero->statut(); } ?>
-<br><br>
-<?php $tour++; } ?>
-<br><br>
-<?php
-if ($monstre->getHp() <= 0) { ?>
-<h3 style="text-align: center; margin-bottom: 50px; font-size: 25px; color: blue;"><?= $hero->getNom(); ?> a vaincu <?= $monstre->getType(); ?> !</h4>
-<?php } else { ?>
-<h3 style="text-align: center; margin-bottom: 50px; font-size: 25px; color: red;"><?= $monstre->getType(); ?> a défait <?= $hero->getNom(); ?>...</h4>
-<?php } ?>
+<section id="test">
+
+</section>
+<section id="combat">
+
+</section>
+</main>
 <script>
-    function myFunction() { 
-          document.getElementById("myFunction").submit(); 
-        }
+
+var titre = document.querySelectorAll('h1')[1];
+
+function combat() {
+this.innerHTML = '<strong>Combat</strong>';
+this.style.color = 'orange';
+};
+
+function jeu() {
+this.innerHTML = 'Jeu';
+this.style.color = 'black';
+};
+
+titre.addEventListener('mouseover', combat);
+titre.addEventListener('mousedown', jeu);
+
+var first_h1 = document.querySelectorAll('h1')[0];
+
+function hide() {
+this.style.visibility = 'hidden';
+};
+
+function show() {
+this.style.visibility = 'visible';
+};
+
+first_h1.addEventListener('mouseover', hide);
+first_h1.addEventListener('mouseout', show);
+
+
+// titre.onclick = function(){
+    //     this.innerHTML = '<strong>Remplacement</strong>';
+    //     this.style.color = 'orange';
+    // };
+    
+
+var img_knight = document.querySelectorAll('img')[0];
+var img_archer = document.querySelectorAll('img')[1];
+var img_mage = document.querySelectorAll('img')[2];
+
+function hide_knight() {
+img_knight.classList.toggle('hidden');
+};
+
+function hide_archer() {
+img_archer.classList.toggle('hidden');
+};
+
+function hide_mage() {
+img_mage.classList.toggle('hidden');
+};
+
+function hide_img() {
+img_mage.style.visibility = 'hidden';
+};
+
+function show_img() {
+img_mage.style.visibility = 'visible';
+};
+
+document.getElementById('ch_knight').addEventListener('click',hide_knight);
+document.getElementById('ch_archer').addEventListener('click',hide_archer);
+// document.getElementById('ch_mage').addEventListener('click',hide_mage);
+document.getElementById('ch_mage').addEventListener('mousedown',hide_img);
+document.getElementById('ch_mage').addEventListener('mouseup',show_img);
+
+var ex_knight = document.getElementById('knight').childNodes[3];
+
+var knight = document.createElement('span');
+knight.innerHTML = '<img height=400px src="assets/img/Knight12.png" alt="chevalier">'
+    
+ex_knight.onclick = function(){
+    ex_knight.parentNode.replaceChild(knight, ex_knight);
+};
+
+var ex_archer = document.getElementById('archer').childNodes[3];
+
+var archer = document.createElement('span');
+archer.innerHTML = '<img height=400px src="assets/img/Archer2-2.png" alt="chevalier">'
+    
+ex_archer.onclick = function(){
+    ex_archer.parentNode.replaceChild(archer, ex_archer);
+};
+
+var ex_mage = document.getElementById('mage').childNodes[3];
+
+var mage = document.createElement('span');
+mage.innerHTML = '<img height=400px src="assets/img/Mage-2.png" alt="chevalier">'
+    
+ex_mage.onclick = function(){
+    ex_mage.parentNode.replaceChild(mage, ex_mage);
+};
+
+function attaque() {
+    var combat = document.getElementById("test");
+    var container = document.createElement("div");
+    container.innerHTML = 
+    "<p><?php $hero->attaque($monstre); ?></p><p><?php $monstre->attaque($hero); ?></p>";
+    combat.appendChild(container);
+
+}
+
+// DARK MODE //
+
+var nightmode = document.querySelector(".nightmode");
+        nightmode.addEventListener("click", ()=> {
+            var body = document.querySelector('body');
+            body.classList.toggle('darkmode');
+        });
+
 </script>
+<footer>
+    <hr>
+    <a href="#">© The Entertainer Prod.</a> | <a href="#">Mentions légales</a> | <button class="nightmode">Night Mode</button> | 2022
+</footer>
 </body>
 </html>

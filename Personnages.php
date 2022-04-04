@@ -18,7 +18,7 @@ abstract class Personnages {
     }
 
     public function statut() {
-        echo "<p><span style='color: green;'>HP</span> : ".$this->getHp()." | <span style='color: gray;'>XP</span> : ".$this->getXp()." | <span style='color: blue;'>ATT</span> : ".$this->getAtt()." | <span style='color: red;'>DEF</span> : ".$this->getDef()." | <span style='color: fuchsia;'>MAG</span> : ".$this->getMag()." | <span style='color: darkorange ;'>VIT</span> : ".$this->getVit()."</p>";
+        echo "<span style='color: green;'>HP</span> : ".$this->getHp()." | <span style='color: gray;'>XP</span> : ".$this->getXp()." | <span style='color: blue;'>ATT</span> : ".$this->getAtt()." | <span style='color: red;'>DEF</span> : ".$this->getDef()." | <span style='color: fuchsia;'>MAG</span> : ".$this->getMag()." | <span style='color: darkorange ;'>VIT</span> : ".$this->getVit();
     }
 
     public function defense() {
@@ -31,7 +31,9 @@ abstract class Personnages {
     }
 
     public function regeneration() {
-
+        if($this->getHp()<40){
+            $this->setHp($this->getHp()+30);
+        }
     }
 
 

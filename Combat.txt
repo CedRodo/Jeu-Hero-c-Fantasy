@@ -1,0 +1,23 @@
+<?php $tour = 1;
+while (($monstre->getHp() > 0) && ($hero->getHp() > 0)) { ?>
+<h3 style="border: 2px solid black; border-style: dotted; width: fit-content; padding: 5px;">Tour n° <?= $tour; ?></h3>
+<br>
+<?php if ($hero->getHp() > 0) { ?>
+<h4><span style="text-transform: uppercase;"><?= $hero->getNom(); ?></span> <span style="font-style: italic; font-weight: normal;text-transform: lowercase;">(<?= $hero->getClasse(); ?>)</span></h3>
+<?php $hero->attaque($monstre); } ?>
+<?php if ($monstre->getHp() > 0) { ?>
+<br><br>
+<h4 style="text-transform: uppercase;"><?= $monstre->getType(); ?></h3>
+<?php $monstre->attaque($hero); ?>
+<br><br>
+<h4>Statut de <?= $hero->getNom(); ?></h3>
+<?php $hero->statut(); } ?>
+<br><br>
+<?php $tour++; } ?>
+<br><br>
+<?php
+if ($monstre->getHp() <= 0) { ?>
+<h3 style="text-align: center; margin-bottom: 50px; font-size: 25px; color: blue;"><?= $hero->getNom(); ?> a vaincu <?= $monstre->getType(); ?> !</h4>
+<?php } else { ?>
+<h3 style="text-align: center; margin-bottom: 50px; font-size: 25px; color: red;"><?= $monstre->getType(); ?> a défait <?= $hero->getNom(); ?>...</h4>
+<?php } ?>
