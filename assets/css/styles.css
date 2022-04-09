@@ -1,6 +1,6 @@
 body {
   /* background-color: #000; */
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(243, 233, 233);
   margin-left: 0px;
   margin-right: 0px;
   margin-top: 0px;
@@ -32,14 +32,32 @@ h1 {
 }
 
 #description h2 {
-    border: 0px solid;
     border-radius: 20px;
     background-color: purple;
     color: white;
 }
 
 #description article {
-    width: 25%;
+    min-width: 25%;
+}
+
+.container_img {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+}
+
+#select_knight, #select_archer, #select_mage {
+  width: 60%;
+  object-fit: contain;
+}
+
+.container_img div {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 20%;
 }
 
 .description_heros {
@@ -58,6 +76,11 @@ h1 {
     padding: 5px 20px;
     font-size: 20px;
     border-radius: 2px 2px 25px 25px;
+}
+
+.choix a {
+  text-decoration: none;
+    color: #fff;
 }
 
 .choix:hover {
