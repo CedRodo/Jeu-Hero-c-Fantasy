@@ -101,15 +101,19 @@
     var combat = document.getElementById("test");
     var container = document.createElement("div");
     var duel = combat.appendChild(container);
+
     function attaque() {
         
-        duel.innerHTML += 
+        container.innerHTML = 
         "<h4><span style='text-transform: uppercase;'><?= $hero->getNom(); ?></span> <span style='font-style: italic; font-weight: normal;text-transform: lowercase;'>(<?= $hero->getClasse(); ?>)</span></h4><p><?php $hero->attaque($monstre); ?></p><br><br><h4 style='text-transform: uppercase;'><?= $monstre->getType(); ?></h4><p><?php $monstre->attaque($hero); ?></p><p><?= $hero->getHp() ;?></p>";
+
+        
     }
 
 
     var select_img_knight = document.getElementById('select_knight');
     var num_img_knight = 13;
+
     function change_img_knight_previous() {
         if (num_img_knight > 1) {
             num_img_knight--;
@@ -132,6 +136,7 @@
 
     var select_img_archer = document.getElementById('select_archer');
     var num_img_archer = 1;
+
     function change_img_archer_previous() {
         if (num_img_archer > 1) {
             num_img_archer--;
@@ -154,6 +159,7 @@
 
     var select_img_mage = document.getElementById('select_mage');
     var num_img_mage = 1;
+
     function change_img_mage_previous() {
         if (num_img_mage > 1) {
             num_img_mage--;
@@ -180,12 +186,9 @@
 
     
     function write_src() {
-
-        var container = document.getElementById('container_src');
-
+        var container_src = document.getElementById('container_src');
         var img_knight = document.getElementById('select_knight');
-
-        container.innerHTML = img_knight.src;
+        container_src.innerHTML = img_knight.src;
     }
 
 

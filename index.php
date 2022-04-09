@@ -8,6 +8,9 @@
     <title>Jeu de rôle</title>    
 </head>
 <body>
+<div id="logo">
+    <img src="assets/logos/fft-logo.png" alt="logo">
+</div>
 <main>
 <h1>Classes</h1>
 <?php require "Personnages.php";
@@ -113,6 +116,9 @@ if (isset($_POST['mage'])) {
     </div>
 <br/><br/>
 </section>
+<div id="carte">
+    <img src="assets/worlds/FFTIvalice.png" alt="carte">
+</div>
 <!-- <button onclick="write_src();">CLIQUE SUR MOI</button>
 <p id="container_src"></p> -->
 <h1>Jeu</h1>
@@ -204,5 +210,19 @@ if (isset($_GET['ch'])) {
     <a href="#">© The Entertainer Prod.</a> | <a href="#">Mentions légales</a> | <button class="nightmode">Night Mode</button> | 2022
 </footer>
 <script src="./assets/js/functions.js"></script>
+<script>
+    
+    var combat = document.getElementById("test");
+    var container = document.createElement("div");
+
+    function attaque() {
+        
+        container.innerHTML += 
+        "<h4><span style='text-transform: uppercase;'><?= $hero->getNom(); ?></span> <span style='font-style: italic; font-weight: normal;text-transform: lowercase;'>(<?= $hero->getClasse(); ?>)</span></h4><p><?php $hero->attaque($monstre); ?></p><br><br><h4 style='text-transform: uppercase;'><?= $monstre->getType(); ?></h4><p><?php $monstre->attaque($hero); ?></p><p><?= $hero->getHp() ;?></p>";
+        var duel = combat.appendChild(container);
+
+        
+    }
+</script>
 </body>
 </html>
