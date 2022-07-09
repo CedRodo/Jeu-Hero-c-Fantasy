@@ -147,9 +147,10 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
     flex-direction: row;
     justify-content: space-evenly;
     margin-top: 25px;
+    padding: 0 100px;
 }
 
-.duel .strike {
+.duel .strike-number {
   position: absolute;
   top: 25%;
   left: 45%;
@@ -159,7 +160,7 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
   z-index: 1;
 }
 
-.strike-anim {
+.strike-number-anim {
   transform: scale(1.5);
   visibility: hidden;
   opacity: 0;
@@ -173,12 +174,6 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
   30%, 50%, 70% { transform: translate3d(-12px, 0, 0); }
   40%, 60% { transform: translate3d(12px, 0, 0); }
 }
-
-/* @keyframes zoom-in-and-out {
-  0% { transform: scale(1, 1); }
-  50% { transform: scale(1.5, 1.5); }
-  100% { transform: scale(1, 1); }
-} */
 
 .duel img {
     display: block;
@@ -197,18 +192,38 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
   width:50%;
 }
 
-.duel-hero-container img, .duel-monstre-container img {
+.duel-hero, .duel-monstre {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
+.duel-hero-container .striked, .duel-monstre-container .striked {
+  visibility: hidden;
+  height: 250px;
+  position: absolute;
+  top: 21%;
+  left: 35%;
+  z-index: 2;
+}
+
+.striked-anim {
+  visibility: visible !important;
+  opacity: 0;
+  transition: all 1.1s;
+}
+
+.defait {
+  filter: saturate(10%);
+  transition: all 2.5s;
+}
+
 .striked-medium-left {
-  animation: striked-medium-left 0.5s ease 2;
+  animation: striked-medium-left 0.4s ease 2;
 }
 
 .striked-fierce-left {
-  animation: striked-fierce-left 0.5s ease 2;
+  animation: striked-fierce-left 0.4s ease 2;
 }
 
 @keyframes striked-medium-left {
@@ -228,11 +243,11 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 }
 
 .striked-medium-right {
-  animation: striked-medium-right 0.5s ease 2;
+  animation: striked-medium-right 0.4s ease 2;
 }
 
 .striked-fierce-right {
-  animation: striked-fierce-right 0.5s ease 2;
+  animation: striked-fierce-right 0.4s ease 2;
 }
 
 @keyframes striked-medium-right {
@@ -261,13 +276,13 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 
 @keyframes strike-medium-left {
   0% { transform: translateX(0) }
-  50% { transform: translateX(75px) }
+  50% { transform: translateX(100px) }
   100% { transform: translateX(0) }
 }
 
 @keyframes strike-fierce-left {
   0% { transform: translateX(0) }
-  50% { transform: translateX(100px) }
+  50% { transform: translateX(125px) }
   100% { transform: translateX(0) }
 }
 
@@ -281,19 +296,19 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 
 @keyframes strike-medium-right {
   0% { transform: translateX(0) }
-  50% { transform: translateX(-75px) }
+  50% { transform: translateX(-100px) }
   100% { transform: translateX(0) }
 }
 
 @keyframes strike-fierce-right {
   0% { transform: translateX(0) }
-  50% { transform: translateX(-100x) }
+  50% { transform: translateX(-125x) }
   100% { transform: translateX(0) }
 }
 
 .duel-hero-container .damage, .duel-monstre-container .damage {
   position: absolute;
-  top: 5%;
+  top: 7%;
   left: 45%;
   font-size: 60px;
   font-weight: 700;
@@ -315,7 +330,7 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 .duel-monstre-prog, .duel-hero-prog {
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
+  margin-top: 50px;
   align-items: center;
 }
 

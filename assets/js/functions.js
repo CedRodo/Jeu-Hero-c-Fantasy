@@ -8,7 +8,9 @@
             });
 
 
-    //////////////////
+    ///////////////////////////////////////////////////////////
+
+
 
     var titre = document.querySelectorAll('h1')[1];
 
@@ -22,8 +24,12 @@
     this.style.color = 'black';
     };
 
-    titre.addEventListener('mouseover', combat);
-    titre.addEventListener('mousedown', jeu);
+    if (titre != null) {
+        
+        titre.addEventListener('mouseover', combat);
+        titre.addEventListener('mousedown', jeu);
+
+    }
 
     var first_h1 = document.querySelectorAll('h1')[0];
 
@@ -37,65 +43,6 @@
 
     first_h1.addEventListener('mouseover', hide);
     first_h1.addEventListener('mouseout', show);
-
-
-    // titre.onclick = function(){
-        //     this.innerHTML = '<strong>Remplacement</strong>';
-        //     this.style.color = 'orange';
-        // };
-        
-
-    // var img_knight = document.querySelectorAll('img')[0];
-    // var img_archer = document.querySelectorAll('img')[1];
-    // var img_mage = document.querySelectorAll('img')[2];
-
-    // function hide_knight() {
-    // img_knight.classList.toggle('hidden');
-    // };
-
-    // function hide_archer() {
-    // img_archer.classList.toggle('hidden');
-    // };
-
-    // function hide_mage() {
-    // img_mage.classList.toggle('hidden');
-    // };
-
-    // function hide_img() {
-    // img_mage.style.visibility = 'hidden';
-    // };
-
-    // function show_img() {
-    // img_mage.style.visibility = 'visible';
-    // };
-
-    // document.getElementById('ch_knight').addEventListener('click',hide_knight);
-    // document.getElementById('ch_archer').addEventListener('click',hide_archer);
-    // // document.getElementById('ch_mage').addEventListener('click',hide_mage);
-    // document.getElementById('ch_mage').addEventListener('mousedown',hide_img);
-    // document.getElementById('ch_mage').addEventListener('mouseup',show_img);
-
-
-    // var ex_knight = document.getElementById('knight').childNodes[3];
-    // var knight = document.createElement('span');
-    // knight.innerHTML = '<img height=400px src="assets/img/Knight12.png" alt="chevalier">'
-    // ex_knight.onclick = function(){
-    //     ex_knight.parentNode.replaceChild(knight, ex_knight);
-    // };
-
-    // var ex_archer = document.getElementById('archer').childNodes[3];
-    // var archer = document.createElement('span');
-    // archer.innerHTML = '<img height=400px src="assets/img/Archer2-2.png" alt="chevalier">'
-    // ex_archer.onclick = function(){
-    //     ex_archer.parentNode.replaceChild(archer, ex_archer);
-    // };
-
-    // var ex_mage = document.getElementById('mage').childNodes[3];
-    // var mage = document.createElement('span');
-    // mage.innerHTML = '<img height=400px src="assets/img/Mage-2.png" alt="chevalier">'
-    // ex_mage.onclick = function(){
-    //     ex_mage.parentNode.replaceChild(mage, ex_mage);
-    // };
 
     var select_img_knight = document.getElementById('select_knight');
     var num_img_knight = 13;
@@ -210,11 +157,12 @@
     var heroMp = document.getElementById("barre_mp");
     var monstreHp = document.getElementById("hp_monstre");
     var duelHeroButtons = document.querySelectorAll(".duel-hero-buttons button");
-    var strike = document.querySelector(".strike");
-    var damage = document.querySelectorAll(".damage");
+    var strike_number = document.querySelector(".strike-number");
+    var heroStriked = document.querySelector(".duel-hero-container .striked");
+    var monstreStriked = document.querySelector(".duel-monstre-container .striked");
+    var heroDamage = document.querySelector(".duel-hero-container .damage");
+    var monstreDamage = document.querySelector(".duel-monstre-container .damage");
     var duelStatus = document.getElementById("duel_status");
-    var heroStatus = document.getElementById("hero_status");
-    var monstreStatus = document.getElementById("monstre_status");
     var container = document.createElement("div");
 
     var hero = {
@@ -234,6 +182,11 @@
         'vit': 30
     }
 
+    console.log("Monstre STRIKED :");
+    console.log(monstreStriked);
+    console.log("Héro STRIKED :");
+    console.log(heroStriked);
+
     function defense(p) {
         
         var defense = Math.floor(Math.random() * ((p.def + 10) - (p.def - 10)+ 1)) + (p.def - 10);
@@ -246,10 +199,14 @@
 
         duelHero.classList.remove('strike-medium-left');
         duelHero.classList.remove('striked-medium-left');
+        duelHero.classList.remove('defait');
         duelMonstre.classList.remove('striked-medium-right');
         duelMonstre.classList.remove('strike-medium-right');
-        strike.classList.remove('strike-anim');
-        damage[1].classList.remove('damage-anim');
+        duelMonstre.classList.remove('defait');
+        monstreStriked.classList.remove('striked-anim');
+        monstreDamage.classList.remove('striked-anim');
+        strike_number.classList.remove('strike-number-anim');
+        monstreDamage.classList.remove('damage-anim');
         
         void duelMonstre.offsetWidth;        
         void duelHero.offsetWidth;
@@ -259,13 +216,12 @@
         duelHero.classList.add('strike-medium-left');
         duelMonstre.classList.add('striked-medium-right');
 
-        damage[1].textContent = "-" + attHero;
-        
-        damage[1].classList.add('damage-anim');
+        monstreDamage.textContent = "-" + attHero;        
+        monstreDamage.classList.add('damage-anim');
 
         if (attHero < monstre.hp) {
         
-        monstre.hp = (monstre.hp - attHero);
+            monstre.hp = (monstre.hp - attHero);
 
         } else {
 
@@ -281,31 +237,23 @@
 
         }
 
-        strike.textContent = attHero;
-
-        strike.classList.add('strike-anim');
+        strike_number.textContent = attHero;
+        monstreStriked.classList.add('striked-anim');
+        strike_number.classList.add('strike-number-anim');
 
         duelStatus.textContent = "Attaque du héro";
-
-        heroStatus.innerHTML = `<h4 style='text-align: center;'>Attaque portée : <span style='color: green;'>${attHero}</span></h4>`
-        
-        monstreStatus.innerHTML = `<h4 style='text-align: center;'>HP : <span style='color: red;'>${monstre.hp}</span></h4>`
 
         if (monstre.hp == 0) {
 
             monstreHp.classList.remove('zoom-in-zoom-out');
-
+            duelMonstre.classList.add('defait');
             duelStatus.textContent = "Le héro a vaincu le monstre !!!";
-
             duelHeroButtons.forEach(element => element.disabled = true);
 
         } else {
 
-        console.log("Il est toujours là");
-
-        duelHeroButtons.forEach(element => element.disabled = true);
-
-        setTimeout(attaqueMonstre, 2000);
+            duelHeroButtons.forEach(element => element.disabled = true);
+            setTimeout(attaqueMonstre, 2000);
 
         }
         
@@ -315,10 +263,14 @@
 
         duelHero.classList.remove('strike-medium-left');
         duelHero.classList.remove('striked-medium-left');
+        duelHero.classList.remove('defait');
         duelMonstre.classList.remove('strike-medium-right');
         duelMonstre.classList.remove('striked-medium-right');
-        strike.classList.remove('strike-anim');      
-        damage[0].classList.remove('damage-anim');
+        duelMonstre.classList.remove('defait');
+        heroStriked.classList.remove('striked-anim');
+        monstreDamage.classList.remove('striked-anim');
+        strike_number.classList.remove('strike-number-anim');      
+        heroDamage.classList.remove('damage-anim');
 
         void duelHero.offsetWidth;        
         void duelMonstre.offsetWidth;
@@ -328,12 +280,12 @@
         duelMonstre.classList.add('strike-medium-right');
         duelHero.classList.add('striked-medium-left');
 
-        damage[0].textContent = "-" + attMonstre;
-        damage[0].classList.add('damage-anim');
+        heroDamage.textContent = "-" + attMonstre;
+        heroDamage.classList.add('damage-anim');
 
         if (attMonstre < hero.hp) {
         
-        hero.hp = (hero.hp - attMonstre);
+            hero.hp = (hero.hp - attMonstre);
 
         } else {
 
@@ -349,27 +301,22 @@
 
         }
 
-        strike.textContent = attMonstre;
-
-        strike.classList.add('strike-anim');
+        strike_number.textContent = attMonstre;
+        heroStriked.classList.add('striked-anim');
+        strike_number.classList.add('strike-number-anim');
 
         duelStatus.textContent = "Attaque du monstre";
-
-        monstreStatus.innerHTML = `<h4 style='text-align: center;'>Attaque : <span style='color: green;'>${attMonstre}</span></h4>`
-
-        heroStatus.innerHTML = `<h4 style='text-align: center;'>HP : <span style='color: red;'>${hero.hp}</span></h4>`
 
         if (hero.hp == 0) {
 
             heroHp.classList.remove('zoom-in-zoom-out');
-
+            duelHero.classList.add('defait');
             duelStatus.textContent = "Le héro a été défait par le monstre...";
-
             duelHeroButtons.forEach(element => element.disabled = true);
 
         } else {
         
-        duelHeroButtons.forEach(element => element.disabled = false)
+            duelHeroButtons.forEach(element => element.disabled = false)
 
         }
         

@@ -119,8 +119,6 @@ if (isset($_POST['mage'])) {
 <div id="carte">
     <img src="assets/worlds/FFTIvalice.png" alt="carte">
 </div>
-<!-- <button onclick="write_src();">CLIQUE SUR MOI</button>
-<p id="container_src"></p> -->
 <h1>Combat</h1>
 <?php require "Ogre.php"; require "Goblin.php"; require "Dragon.php";
 $ogre = new Ogre;
@@ -164,15 +162,15 @@ if (isset($_GET['ch'])) {
     }
 }
 
- ?>
+if (isset($hero)) { ?>
 <h2 id="duel_status"></h2>
-<?php if (isset($hero)) { ?>
 <div class="duel">
-    <span class="strike"></span>
+    <span class="strike-number"></span>
     <div class="duel-hero-container">
         <h2 style="text-align: start; margin-left: 100px"><?= $hero->getClasse(); ?></h2>
         <br><br>
         <span class="damage"></span>
+        <img class="striked" src="assets/img/effects/claw2-right-inverted.png">
         <img class="duel-hero" src="<?= $hero_img; ?>" alt="hero">
         <div class="duel-hero-prog">
             <div style="margin-bottom: 25px;">
@@ -191,15 +189,16 @@ if (isset($_GET['ch'])) {
         <h2 style="text-align: end; margin-right: 100px"><?= $monstre->getType(); ?></h2>
         <br><br>
         <span class="damage"></span>
+        <img class="striked" src="assets/img/effects/slash2-right.png">
         <img class="duel-monstre" src="<?= $monstre_photo ?>" alt="monstre">
         <div class="duel-monstre-prog">
             <div>
                 <label class="barre_hp" for="barre_hp">HP</label> <progress id="hp_monstre" max="100" value="100"></progress>
             </div>
         </div>
-        <div class="duel-hero-buttons">
+        <!-- <div class="duel-hero-buttons">
             <button type="button" class="attaque" onclick="attaqueMonstre()">ATTAQUE MONSTRE</button>
-        </div>
+        </div> -->
         <div id="monstre_status"></div>
     </div>
 </div>
