@@ -121,7 +121,7 @@ if (isset($_POST['mage'])) {
 </div>
 <!-- <button onclick="write_src();">CLIQUE SUR MOI</button>
 <p id="container_src"></p> -->
-<h1>Jeu</h1>
+<h1>Combat</h1>
 <?php require "Ogre.php"; require "Goblin.php"; require "Dragon.php";
 $ogre = new Ogre;
 $goblin = new Goblin;
@@ -165,17 +165,17 @@ if (isset($_GET['ch'])) {
 }
 
  ?>
-<br>
-<p>
-</p>
+<h2 id="duel_status"></h2>
 <?php if (isset($hero)) { ?>
 <div class="duel">
+    <span class="strike"></span>
     <div class="duel-hero-container">
-        <h2><?= $hero->getClasse(); ?></h2>
+        <h2 style="text-align: start; margin-left: 100px"><?= $hero->getClasse(); ?></h2>
         <br><br>
+        <span class="damage"></span>
         <img class="duel-hero" src="<?= $hero_img; ?>" alt="hero">
         <div class="duel-hero-prog">
-            <div>
+            <div style="margin-bottom: 25px;">
                 <label class="barre_hp" for="barre_hp">HP</label> <progress id="barre_hp" max="100" value="100"></progress>
             </div>
             <div>
@@ -183,46 +183,33 @@ if (isset($_GET['ch'])) {
             </div>
         </div>
         <div class="duel-hero-buttons">
-            <button type="button" class="attaque" onclick="attaque();">ATT</button><button type="button" class="magie" onclick="alert('Magie !');return false;">MAG</button><button type="button" class="sante" onclick="this.textContent='HP UP !';return false;">REG</button>
+            <button type="button" class="attaque" onclick="attaqueHero();">ATT</button><button type="button" class="magie" onclick="alert('Magie !');return false;">MAG</button><button type="button" class="sante" onclick="this.textContent='HP UP !';return false;">REG</button>
         </div>
+        <div id="hero_status"></div>
     </div>
     <div class="duel-monstre-container">
-        <h2><?= $monstre->getType(); ?></h2>
+        <h2 style="text-align: end; margin-right: 100px"><?= $monstre->getType(); ?></h2>
         <br><br>
+        <span class="damage"></span>
         <img class="duel-monstre" src="<?= $monstre_photo ?>" alt="monstre">
         <div class="duel-monstre-prog">
             <div>
                 <label class="barre_hp" for="barre_hp">HP</label> <progress id="hp_monstre" max="100" value="100"></progress>
             </div>
         </div>
+        <div class="duel-hero-buttons">
+            <button type="button" class="attaque" onclick="attaqueMonstre()">ATTAQUE MONSTRE</button>
+        </div>
+        <div id="monstre_status"></div>
     </div>
 </div>
 <?php } ?>
 <br><br><br>
-<section id="test">
-
-</section>
-<section id="combat">
-</section>
 </main>
 <footer>
     <hr>
     <a href="#">© The Entertainer Prod.</a> | <a href="#">Mentions légales</a> | <button class="nightmode">Night Mode</button> | 2022
 </footer>
 <script src="./assets/js/functions.js"></script>
-<script>
-    
-    var combat = document.getElementById("test");
-    var container = document.createElement("div");
-
-    function attaque() {
-        
-        container.innerHTML += 
-        "<h4><span style='text-transform: uppercase;'><?= $hero->getNom(); ?></span> <span style='font-style: italic; font-weight: normal;text-transform: lowercase;'>(<?= $hero->getClasse(); ?>)</span></h4><p><?php $hero->attaque($monstre); ?></p><br><br><h4 style='text-transform: uppercase;'><?= $monstre->getType(); ?></h4><p><?php $monstre->attaque($hero); ?></p><p><?= $hero->getHp() ;?></p>";
-        var duel = combat.appendChild(container);
-
-        
-    }
-</script>
 </body>
 </html>

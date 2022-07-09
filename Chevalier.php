@@ -8,7 +8,7 @@ class Chevalier extends Personnages implements Heros {
     public function __construct(?string $nom = null) {
         $this->setNom($nom);
         $this->setClasse("chevalier");
-        $this->setHp(100);
+        // $this->setHp(100);
         $this->setXp(0);
         $this->setAtt(40);
         $this->setDef(40);
