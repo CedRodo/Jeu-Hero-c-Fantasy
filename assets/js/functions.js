@@ -8,6 +8,7 @@
             });
 
 
+
     ///////////////////////////////////////////////////////////
 
 
@@ -130,15 +131,15 @@
     var form_mg = document.getElementById('form_mg');
 
     function change_action_kn() {
-        form_kn.action = "index.php?ch=kn&img=" + num_img_knight;
+        form_kn.action = "index.php?ch=kn&img=" + num_img_knight + "#description";
         }
 
     function change_action_ar() {
-        form_ar.action = "index.php?ch=ar&img=" + num_img_archer;
+        form_ar.action = "index.php?ch=ar&img=" + num_img_archer + "#description";
         }
 
     function change_action_mg() {
-        form_mg.action = "index.php?ch=mg&img=" + num_img_mage;
+        form_mg.action = "index.php?ch=mg&img=" + num_img_mage + "#description";
         }
 
 
@@ -224,7 +225,8 @@
     
     heroContainer.dataset.classe == 'chevalier' ? hero = chevalier : (heroContainer.dataset.classe == 'archer' ? hero = archer : hero = mage);
     monstreContainer.dataset.type == 'dragon' ? monstre = dragon : (monstreContainer.dataset.type == 'goblin' ? monstre = goblin : monstre = ogre);
-        
+    var heroNom = heroContainer.dataset.nom;
+
     if (regenT < 100) {
         duelHeroButtons[2].disabled = true;
     }
@@ -253,7 +255,7 @@
 
         console.log(heroHp.value);
 
-        duelStatus.textContent = "Le héro régènère de " + regen + " HP !";
+        duelStatus.textContent = heroNom + " régènère de " + regen + " HP !";
 
         regenT = 0;
 
@@ -338,13 +340,13 @@
             monstreStriked.classList.add('striked-anim');
             strike_number.classList.add('strike-number-anim');
 
-            duelStatus.textContent = "Attaque du héro";
+            duelStatus.textContent = "Attaque de " + heroNom;
 
             if (monstre.hp == 0) {
 
                 monstreHp.classList.remove('zoom-in-zoom-out');
                 duelMonstre.classList.add('defait');
-                duelStatus.textContent = "Le héro a vaincu le monstre !!!";
+                duelStatus.textContent = heroNom + " a vaincu le monstre !!!";
                 duelHeroButtons.forEach(element => element.disabled = true);
 
             } else {
@@ -431,12 +433,11 @@
 
                 heroHp.classList.remove('zoom-in-zoom-out');
                 duelHero.classList.add('defait');
-                duelStatus.textContent = "Le héro a été défait par le monstre...";
+                duelStatus.textContent = heroNom + " a été défait par le monstre...";
                 duelHeroButtons.forEach(element => element.disabled = true);
 
             } else {
             
-                // duelHeroButtons.forEach(element => element.disabled = false)
                 duelHeroButtons[0].disabled = false;
                 duelHeroButtons[1].disabled = false;
 
@@ -449,7 +450,6 @@
 
             duelStatus.textContent = "Attaque du monstre évitée !";
 
-            // duelHeroButtons.forEach(element => element.disabled = false);
             duelHeroButtons[0].disabled = false;
             duelHeroButtons[1].disabled = false;
 

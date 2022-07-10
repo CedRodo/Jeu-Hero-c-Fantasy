@@ -166,7 +166,7 @@ if (isset($hero)) { ?>
 <h2 id="duel_status"></h2>
 <div class="duel">
     <span class="strike-number"></span>
-    <div class="duel-hero-container" data-classe="<?= $hero->getClasse(); ?>">
+    <div class="duel-hero-container" data-classe="<?= $hero->getClasse(); ?>" data-nom="<?= $hero->getNom(); ?>">
         <h2 style="text-align: start; margin-left: 100px"><?= $hero->getClasse(); ?></h2>
         <br><br>
         <span class="damage"></span>
