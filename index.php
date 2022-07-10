@@ -166,7 +166,7 @@ if (isset($hero)) { ?>
 <h2 id="duel_status"></h2>
 <div class="duel">
     <span class="strike-number"></span>
-    <div class="duel-hero-container">
+    <div class="duel-hero-container" data-classe="<?= $hero->getClasse(); ?>">
         <h2 style="text-align: start; margin-left: 100px"><?= $hero->getClasse(); ?></h2>
         <br><br>
         <span class="damage"></span>
@@ -181,11 +181,14 @@ if (isset($hero)) { ?>
             </div>
         </div>
         <div class="duel-hero-buttons">
-            <button type="button" class="attaque" onclick="attaqueHero();">ATT</button><button type="button" class="magie" onclick="alert('Magie !');return false;">MAG</button><button type="button" class="sante" onclick="this.textContent='HP UP !';return false;">REG</button>
+            <button type="button" class="attaque" onclick="attaqueHero();">ATT</button><button type="button" class="magie" onclick="document.querySelector('.duel-hero-magies').style.display = 'flex';">MAG</button><button type="button" class="sante" onclick="regeneration(<?= $hero->getClasse(); ?>);">REG</button>
+        </div>
+        <div class="duel-hero-magies">
+            <button type="button" class="attaque" onclick="magie(feu);">FEU</button><button type="button" class="attaque" onclick="magie(glace);">GLACE</button><button type="button" class="attaque" onclick="magie(foudre);">FOUDRE</button>
         </div>
         <div id="hero_status"></div>
     </div>
-    <div class="duel-monstre-container">
+    <div class="duel-monstre-container" data-type="<?= $monstre->getType(); ?>">
         <h2 style="text-align: end; margin-right: 100px"><?= $monstre->getType(); ?></h2>
         <br><br>
         <span class="damage"></span>

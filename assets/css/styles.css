@@ -200,10 +200,10 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 
 .duel-hero-container .striked, .duel-monstre-container .striked {
   visibility: hidden;
-  height: 250px;
+  height: 300px;
   position: absolute;
   top: 21%;
-  left: 35%;
+  left: 34%;
   z-index: 2;
 }
 
@@ -379,9 +379,24 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 }
 
 .duel-hero-buttons {
-  margin: 30px 340px 0px 340px;
   display: flex;
   justify-content: space-around;
+  margin: 30px 340px 0px 340px;
+}
+
+.duel-hero-buttons button {
+  margin-left: 15px;
+}
+
+.duel-hero-magies {
+  display: none;
+  justify-content: space-around;
+  margin: 30px 340px 0px 340px;
+}
+
+.duel-hero-magies button {
+  border-radius: 20px !important;
+  margin-left: 15px;
 }
 
 input[value] {

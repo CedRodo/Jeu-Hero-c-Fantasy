@@ -12,7 +12,7 @@ class Archer extends Personnages implements Heros {
         $this->setXp(0);
         $this->setAtt(20);
         $this->setDef(15);
-        $this->setMag(15);
+        $this->setMag(30);
         $this->setVit(50);
     }
 
