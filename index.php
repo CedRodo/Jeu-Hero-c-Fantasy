@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
     <title>Jeu de rôle</title>    
 </head>
@@ -164,13 +165,21 @@ if (isset($_GET['ch'])) {
 
 if (isset($hero)) { ?>
 <h2 id="duel_status"></h2>
+<div class="tour-container">
+    <div class="progress_bar-container">
+        <i class="fa-solid fa-flag tour_hero"></i>
+        <i class="fa-solid fa-flag tour_monstre"></i>
+        <progress id="tour" max="100" value="100">TEST</progress>
+    </div>
+    <button id="combat" onclick="combat();">COMBAT !</button>
+</div>
 <div class="duel">
     <span class="strike-number"></span>
     <div class="duel-hero-container" data-classe="<?= $hero->getClasse(); ?>" data-nom="<?= $hero->getNom(); ?>">
-        <h2 style="text-align: start; margin-left: 100px"><?= $hero->getClasse(); ?></h2>
+        <!-- <h2 style="text-align: start; margin-left: 100px"><?= $hero->getClasse(); ?></h2> -->
         <br><br>
         <span class="damage"></span>
-        <img class="striked" src="assets/img/effects/claw2-right-inverted.png">
+        <img class="striked" src="">
         <img class="duel-hero" src="<?= $hero_img; ?>" alt="hero">
         <div class="duel-hero-prog">
             <div style="margin-bottom: 25px;">
@@ -181,7 +190,9 @@ if (isset($hero)) { ?>
             </div>
         </div>
         <div class="duel-hero-buttons">
-            <button type="button" class="attaque" onclick="attaqueHero();">ATT</button><button type="button" class="magie" onclick="document.querySelector('.duel-hero-magies').style.display = 'flex';">MAG</button><button type="button" class="sante" onclick="regeneration(<?= $hero->getClasse(); ?>);">REG</button>
+            <button type="button" class="attaque" onclick="attaqueHero();">ATT</button>
+            <button type="button" class="magie" onclick="document.querySelector('.duel-hero-magies').style.display = 'flex';">MAG</button>
+            <button type="button" class="sante" onclick="regeneration(<?= $hero->getClasse(); ?>);">REG</button>
         </div>
         <div class="duel-hero-magies">
             <button type="button" class="attaque" onclick="magie(feu);">FEU</button><button type="button" class="attaque" onclick="magie(glace);">GLACE</button><button type="button" class="attaque" onclick="magie(foudre);">FOUDRE</button>
@@ -189,10 +200,10 @@ if (isset($hero)) { ?>
         <div id="hero_status"></div>
     </div>
     <div class="duel-monstre-container" data-type="<?= $monstre->getType(); ?>">
-        <h2 style="text-align: end; margin-right: 100px"><?= $monstre->getType(); ?></h2>
+        <!-- <h2 style="text-align: end; margin-right: 100px"><?= $monstre->getType(); ?></h2> -->
         <br><br>
         <span class="damage"></span>
-        <img class="striked" src="assets/img/effects/slash2-right.png">
+        <img class="striked" src="">
         <img class="duel-monstre" src="<?= $monstre_photo ?>" alt="monstre">
         <div class="duel-monstre-prog">
             <div>

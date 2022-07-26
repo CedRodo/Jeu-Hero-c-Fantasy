@@ -145,6 +145,14 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
   color: white;
 }
 
+#combat {
+  background-color: red;
+  font-size: 25px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  color: white;
+}
+
 .duel {
     position: relative;
     display: flex;
@@ -165,7 +173,7 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 }
 
 .strike-number-anim {
-  transform: scale(1.5);
+  transform: scale(3.5, 1.5);
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s 1.3s, opacity 1.3s linear;
@@ -181,7 +189,7 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 
 .duel img {
     display: block;
-    height: 400px;
+    height: 450px;
 }
 
 .duel h2 {
@@ -203,12 +211,12 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 }
 
 .duel-hero-container .striked, .duel-monstre-container .striked {
-  visibility: hidden;
-  height: 300px;
   position: absolute;
-  top: 21%;
-  left: 34%;
+  top: 5%;
+  left: 25%;
+  height: 400px;
   z-index: 2;
+  visibility: hidden;
 }
 
 .striked-anim {
@@ -312,7 +320,7 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 
 .duel-hero-container .damage, .duel-monstre-container .damage {
   position: absolute;
-  top: 7%;
+  top: 0%;
   left: 45%;
   font-size: 60px;
   font-weight: 700;
@@ -339,7 +347,7 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 }
 
 .duel-monstre-prog label, .duel-hero-prog label {
-  padding: 3px;
+  padding: 5px;
 }
 
 .barre_hp {
@@ -347,7 +355,7 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
   border: 2px solid blue;
   background-color: #0dcaf0;
   text-align: center;
-  width: 25px;
+  width: 30px;
   margin-right: 3px;
   color: white;
 }
@@ -357,7 +365,7 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
   border: 2px solid red;
   background-color: #f36d83;
   text-align: center;
-  width: 25px;
+  width: 30px;
   margin-right: 3px;
   color: white;
 }
@@ -367,9 +375,51 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
   border-style: double;
   background-color: red;
   color: rgb(165, 165, 158);
-  width: 250px;
-  height: 25px;
-  margin-bottom: -5px;
+  width: 350px;
+  height: 30px;
+  margin-bottom: -8px;
+}
+
+#barre_hp:after, #barre_mp:after, #hp_monstre:after {
+  content: attr(value)'/100';
+}
+
+.tour-container {
+  width: 100%;
+  height: 50px;
+  margin-top: 50px;
+}
+
+.progress_bar-container {
+  width: fit-content;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#tour {
+  display: block;
+  border : 2px solid;
+  border-radius: 20%;
+  background-color: rgb(255, 251, 0);
+  color: rgb(203, 177, 245);
+  width: 350px;
+  height: 15px;
+}
+
+.tour_hero, .tour_monstre {
+  position: absolute;
+  top: -23px;
+  left: 0;
+  font-size: 30px;
+}
+
+.tour_hero {
+  color: rgba(153, 205, 50, 0.781);
+}
+
+.tour_monstre {
+  color: rgba(196, 7, 7, 0.767);
 }
 
 .zoom-in-zoom-out {
