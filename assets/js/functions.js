@@ -123,6 +123,9 @@
     let heroHp = document.getElementById("barre_hp");
     let heroMp = document.getElementById("barre_mp");
     let monstreHp = document.getElementById("hp_monstre");
+    let barreHpHeroContent = document.querySelector(".barreH_hp-content");
+    let barreMpHeroContent = document.querySelector(".barreH_mp-content");
+    let barreHpMonstreContent = document.querySelector(".barreM_hp-content");
     let duelHeroButtons = document.querySelectorAll(".duel-hero-buttons button");
     let duelHeroButtonSante = document.querySelector(".sante");
     let duelHeroMagies = document.querySelector(".duel-hero-magies");
@@ -205,9 +208,34 @@
 
     duelHeroButtons.forEach(element => element.disabled = true);
 
+    duelHeroButtonSante.addEventListener('mouseover', ()=> {
+        duelHeroButtonSante.textContent = regenNb;
+    });
+
+    duelHeroButtonSante.addEventListener('mouseout', ()=> {
+        duelHeroButtonSante.textContent = 'REG';
+    });
+
     function combat() {
 
         duelHeroButtons.forEach(element => element.disabled = true);
+
+        barreHpHeroContent.textContent = heroHp.value + "/100";
+        barreMpHeroContent.textContent = heroMp.value + "/100";
+        barreHpMonstreContent.textContent = monstreHp.value + "/100";
+            
+        if (heroHp.value > 20 && heroHp.classList.contains('zoom-in-zoom-out') == true) {
+
+            heroHp.classList.remove('zoom-in-zoom-out');
+
+        }
+            
+        if (monstreHp.value > 20 && monstreHp.classList.contains('zoom-in-zoom-out') == true) {
+
+            monstreHp.classList.remove('zoom-in-zoom-out');
+
+        }
+
         heroInterval = setInterval(tourHero, heroVitesseTour);
         monstreInterval = setInterval(tourMonstre, monstreVitesseTour);
 
@@ -402,14 +430,6 @@
         void duelMonstre.offsetWidth;
 
         tour_monstre.style.left = "0%";
-
-        regenT = regenT + hero.vit;
-        
-        if (regenT < 100) {
-            duelHeroButtons[2].disabled = true;
-        } else {
-            duelHeroButtons[2].disabled = false;
-        }
 
         chance = Math.floor(Math.random() * 100) + 1;
 

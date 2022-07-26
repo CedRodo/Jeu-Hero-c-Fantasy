@@ -183,10 +183,11 @@ if (isset($hero)) { ?>
         <img class="duel-hero" src="<?= $hero_img; ?>" alt="hero">
         <div class="duel-hero-prog">
             <div style="margin-bottom: 25px;">
-                <label class="barre_hp" for="barre_hp">HP</label> <progress id="barre_hp" max="100" value="100"></progress>
+
+                <label class="barre_hp" for="barre_hp">HP</label><div class="barre-container"><span class="barreH_hp-content"></span><progress id="barre_hp" max="100" value="100"></progress></div>
             </div>
             <div>
-                <label class="barre_mp" for="barre_mp">MP</label> <progress id="barre_mp" max="100" value="100"></progress>
+                <label class="barre_mp" for="barre_mp">MP</label><div class="barre-container"><span class="barreH_mp-content"></span><progress id="barre_mp" max="100" value="100"></progress></div>
             </div>
         </div>
         <div class="duel-hero-buttons">
@@ -207,12 +208,9 @@ if (isset($hero)) { ?>
         <img class="duel-monstre" src="<?= $monstre_photo ?>" alt="monstre">
         <div class="duel-monstre-prog">
             <div>
-                <label class="barre_hp" for="barre_hp">HP</label> <progress id="hp_monstre" max="100" value="100"></progress>
+                <label class="barre_hp" for="hp_monstre">HP</label><div class="barre-container"><span class="barreM_hp-content"></span><progress id="hp_monstre" max="100" value="100"></progress></div>
             </div>
         </div>
-        <!-- <div class="duel-hero-buttons">
-            <button type="button" class="attaque" onclick="attaqueMonstre()">ATTAQUE MONSTRE</button>
-        </div> -->
         <div id="monstre_status"></div>
     </div>
 </div>

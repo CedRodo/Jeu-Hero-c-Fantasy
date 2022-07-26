@@ -371,6 +371,7 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 }
 
 #barre_hp, #barre_mp, #hp_monstre {
+  position: relative;
   border : 2px solid;
   border-style: double;
   background-color: red;
@@ -380,8 +381,24 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
   margin-bottom: -8px;
 }
 
-#barre_hp:after, #barre_mp:after, #hp_monstre:after {
+#barre_hp::after, #barre_mp:after, #hp_monstre:after {
   content: attr(value)'/100';
+}
+
+.barreH_hp-content, .barreH_mp-content, .barreM_hp-content {
+  width: 12vh;
+  position: absolute;
+  top: 25%;
+  left: calc(50% - 3vh);
+  color: white;
+  z-index: 1000;
+}
+
+.barre-container {
+  display: inline-block;
+  width: fit-content;
+  height: 34px;
+  position: relative;
 }
 
 .tour-container {
@@ -440,6 +457,7 @@ button:disabled, button[disabled], button:disabled:hover, button[disabled]:hover
 
 .duel-hero-buttons button {
   margin-left: 15px;
+  min-width: 70px;
 }
 
 .duel-hero-magies {
